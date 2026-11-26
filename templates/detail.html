@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin-bottom: 20px;">
+    <a href="/" style="color:#8b949e; text-decoration:none; font-size:14px;">← Back to Dashboard</a>
+</div>
+
+<div style="display:flex; align-items:center; gap:14px; margin-bottom:24px;">
+    <h2 style="color:#c9d1d9;">{{ threat.name }}</h2>
+    <span class="badge badge-{{ threat.severity | lower }}">{{ threat.severity }}</span>
+</div>
+
+<div style="display:grid; grid-template-columns: 2fr 1fr; gap:20px;">
+    <div>
+        <div class="card">
+            <h3 style="color:#58a6ff; font-size:14px; margin-bottom:16px; letter-spacing:1px;">THREAT DETAILS</h3>
+            <table style="width:100%; border-collapse:collapse;">
+                <tr style="border-bottom:1px solid #21262d;">
+                    <td style="padding:10px 0; color:#8b949e; font-size:13px; width:140px;">Type</td>
+                    <td style="padding:10px 0; color:#c9d1d9;">{{ threat.type }}</td>
+                </tr>
+                <tr style="border-bottom:1px solid #21262d;">
+                    <td style="padding:10px 0; color:#8b949e; font-size:13px;">Severity</td>
+                    <td style="padding:10px 0;">
+                        <span class="badge badge-{{ threat.severity | lower }}">{{ threat.severity }}</span>
+                    </td>
+                </tr>
+                <tr style="border-bottom:1px solid #21262d;">
+                    <td style="padding:10px 0; color:#8b949e; font-size:13px;">Source</td>
+                    <td style="padding:10px 0; color:#c9d1d9;">{{ threat.source or '—' }}</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px 0; color:#8b949e; font-size:13px;">Date Logged</td>
+                    <td style="padding:10px 0; color:#c9d1d9;">{{ threat.date_logged }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3 style="color:#58a6ff; font-size:14px; margin-bottom:12px; letter-spacing:1px;">DESCRIPTION</h3>
+            <p style="color:#c9d1d9; line-height:1.7; font-size:15px;">
+                {{ threat.description or 'No description provided.' }}
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <div class="card">
+            <h3 style="color:#58a6ff; font-size:14px; margin-bottom:16px; letter-spacing:1px;">ACTIONS</h3>
+            <form method="POST" action="/delete/{{ threat.id }}"
+                  onsubmit="return confirm('Permanently delete this threat record?')">
+                <button type="submit" class="btn btn-danger" style="width:100%;">Delete Threat</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3 style="color:#58a6ff; font-size:14px; margin-bottom:12px; letter-spacing:1px;">MITRE ATT&CK</h3>
+            <p style="color:#8b949e; font-size:13px; line-height:1.6;">
+                Reference the MITRE ATT&CK framework to map this threat to known adversary tactics, techniques, and procedures (TTPs).
+            </p>
+            <a href="https://attack.mitre.org" target="_blank"
+               style="display:inline-block; margin-top:12px; color:#58a6ff; font-size:13px; text-decoration:none;">
+                → Open MITRE ATT&CK ↗
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

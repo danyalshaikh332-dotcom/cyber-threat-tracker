@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="margin-bottom: 20px; color: #58a6ff;">Log New Threat</h2>
+<div class="card" style="max-width: 600px;">
+    <form method="POST">
+        <div style="margin-bottom: 16px;">
+            <label style="font-size: 12px; color: #8b949e; display:block; margin-bottom:6px;">THREAT NAME *</label>
+            <input name="name" required placeholder="e.g. WannaCry, Emotet..."
+                style="width:100%; background:#0d1117; border:1px solid #30363d; color:#c9d1d9; padding:10px 12px; border-radius:6px;">
+        </div>
+        <div style="margin-bottom: 16px;">
+            <label style="font-size: 12px; color: #8b949e; display:block; margin-bottom:6px;">THREAT TYPE *</label>
+            <select name="type" required style="width:100%; background:#0d1117; border:1px solid #30363d; color:#c9d1d9; padding:10px 12px; border-radius:6px;">
+                <option value="">Select type...</option>
+                <option>Ransomware</option>
+                <option>Malware</option>
+                <option>Phishing</option>
+                <option>APT</option>
+                <option>Vulnerability Exploit</option>
+                <option>DDoS</option>
+                <option>Insider Threat</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <div style="margin-bottom: 16px;">
+            <label style="font-size: 12px; color: #8b949e; display:block; margin-bottom:6px;">SEVERITY *</label>
+            <select name="severity" required style="width:100%; background:#0d1117; border:1px solid #30363d; color:#c9d1d9; padding:10px 12px; border-radius:6px;">
+                <option value="">Select severity...</option>
+                <option>Critical</option>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
+        </div>
+        <div style="margin-bottom: 16px;">
+            <label style="font-size: 12px; color: #8b949e; display:block; margin-bottom:6px;">SOURCE</label>
+            <input name="source" placeholder="e.g. CISA Advisory, FBI Flash, Internal..."
+                style="width:100%; background:#0d1117; border:1px solid #30363d; color:#c9d1d9; padding:10px 12px; border-radius:6px;">
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label style="font-size: 12px; color: #8b949e; display:block; margin-bottom:6px;">DESCRIPTION</label>
+            <textarea name="description" rows="4" placeholder="Describe the threat, attack vector, indicators of compromise..."
+                style="width:100%; background:#0d1117; border:1px solid #30363d; color:#c9d1d9; padding:10px 12px; border-radius:6px; resize:vertical;"></textarea>
+        </div>
+        <div style="display:flex; gap:10px;">
+            <button type="submit" class="btn btn-primary">Log Threat</button>
+            <a href="/" class="btn" style="background:#21262d; color:#c9d1d9;">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
